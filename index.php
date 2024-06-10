@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Petit Coin</title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header class="header">
@@ -12,7 +13,7 @@
             <a href="">Déposer une annonce</a>
         </div>
         <div class="bar-recherche">
-            <form action="recherche.php" method="GET">
+            <form action="/src/controllers/recherche.php" method="GET">
                 <input type="text" name="recherche" placeholder="Rechercher des annonces">
                 <button type="submit">Search</button>
             </form>
@@ -26,4 +27,4 @@
         </div>
     </header>
 </body>
-</html>
+</html> 
