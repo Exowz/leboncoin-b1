@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: azure;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+  
+.wrapper,
+.content {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+ 
+.content {
+    overflow-x: hidden;
+    z-index: 2;
+}
+  
+.content .section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 3;
+}
+  
+.content .section.hero  {
+    background-image: url(https://images.unsplash.com/photo-1589848315097-ba7b903cc1cc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4; 
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    opacity: 0;
+    transform: translate(-50%,-50%) translateY(20px);
+    .svgContainer {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 1em;
+        border-radius: 50%;
+        pointer-events: none;
+        div {
+        position: relative;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 50%;
+        padding-bottom: 100%;
+        }
+        .mySVG {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        }
+        &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        width: inherit;
+        height: inherit;
+        box-sizing: border-box;
+        border: solid 2.5px var(--darkBlue);
+        border-radius: 50%;
+        }
+    }
+}
+
+form.visible{
+    opacity: 1;
+    transform: translate(-50%,-50%) translateY(0);
+}
+
+input[type=submit]{
+    margin-left: 255px;
+    margin-top: 50px;
+    font-size: 15px;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+input{
+    margin-left: 90px;
+    border-radius: 30px;
+    padding: 10px;
+    color: black;
+}
+
+
+
+input[type=password]{
+    .indicator {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 0.85em;
+        width: 0.85em;
+        background-color: var(--inputBG);
+        border: solid 2px var(--darkBlue);
+        border-radius: 3px;
+        &:after {
+        content: "";
+        position: absolute;
+        left: 0.25em;
+        top: 0.025em;
+        width: 0.2em;
+        height: 0.5em;
+        border: solid var(--darkBlue);
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+        visibility: hidden;
+        }
+    }
+    input:checked ~ .indicator {
+        &:after {
+        visibility: visible;
+        }
+    }
+    input:focus ~ .indicator,
+    input:hover ~ .indicator {
+        border-color: var(--medBlue);
+    }
+    input:disabled ~ .indicator {
+        opacity: 0.5;
+        &:after {
+        visibility: hidden;
+        }
+    }
+    }
+
+
+
+.inscrip{
+    color: black;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: fit-content;
+    border-radius: 5px;
+    background-color: aquamarine;
+    a{
+        color: black;
+    }
+    a:hover{
+        transform: scaleY(1.2);
+        color: darkmagenta;
+    }
+
+}
+
+input:hover{
+    background-color: #a6f4f4;
+    transition: transform 1s;
+    transform: scaleY(1.2);
+}
+
+input[type=submit]:hover{
+    background-color: #52ac1e;
+    transition: transform 1s;
+    transform: scaleY(1.3);
+
+}
+
+.show{
+    font-size: 15px;
+    color: azure;
+    margin-left: 30px;
+}
+
+  
+.image-container {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2; 
+    perspective: 500px;
+    overflow: hidden;
+    pointer-events: none;
+}
+  
+.image-container img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    object-position: center center; 
+}
+  
