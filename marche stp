@@ -1,0 +1,151 @@
+// grid.c
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include "grid.h"
+#include "utils.h"
+
+#define GRID_SIZE 15
+
+char** generate_grid(char **word_list, int word_count) {
+    char **grid = malloc(GRID_SIZE * sizeof(char*));
+    for (int i = 0; i < GRID_SIZE; i++) {
+        grid[i] = malloc(GRID_SIZE * sizeof(char));
+        memset(grid[i], ' ', GRID_SIZE);
+    }
+    // Logic to place words in the grid
+    fill_empty_spaces(grid);
+    return grid;
+}
+
+void fill_empty_spaces(char **grid) {
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            if (grid[i][j] == ' ') {
+                grid[i][j] = generate_random_letter();
+            }
+        }
+    }
+}
+
+void display_grid(char **grid) {
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            printf("%c ", grid[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void free_grid(char **grid) {
+    for (int i = 0; i < GRID_SIZE; i++) {
+        free(grid[i]);
+    }
+    free(grid);
+}
+// ui.c
+
+#include <stdio.h>
+#include "ui.h"
+
+void display_welcome_message() {
+    printf("Bienvenue dans le jeu de mots croisés!\n");
+}
+
+int display_main_menu() {
+    int choice;
+    printf("Menu Principal:\n");
+    printf("1. Jouer\n");
+    printf("2. Quitter\n");
+    printf("Choisissez une option: ");
+    scanf("%d", &choice);
+    return choice;
+}
+
+void choose_theme(char *theme) {
+    int choice;
+    printf("Choisissez un thème:\n");
+    printf("1. Animaux\n");
+    printf("2. Pays\n");
+    printf("Choisissez une option: ");
+    scanf("%d", &choice);
+    if (choice == 1) {
+        strcpy(theme, "Animaux");
+    } else if (choice == 2) {
+        strcpy(theme, "Pays");
+    }
+}
+
+void display_grid(char **grid) {
+    for (int i = 0; i < 15; i++) {
+        for (int j = 0; j < 15; j++) {
+            printf("%c ", grid[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void get_user_selection(char *selection) {
+    printf("Sélectionnez un mot: ");
+    scanf("%s", selection);
+}
+
+void display_success_message(const char *word) {
+    printf("Bravo! Vous avez trouvé le mot: %s\n", word);
+}
+
+void display_error_message() {
+    printf("Mot incorrect, essayez encore.\n");
+}
+
+void display_congratulations() {
+    printf("Félicitations! Vous avez trouvé tous les mots.\n");
+}
+// utils.h
+
+#ifndef UTILS_H
+#define UTILS_H
+
+char generate_random_letter();
+
+#endif
+
+// utils.c
+
+#include <stdlib.h>
+#include <time.h>
+#include "utils.h"
+
+char generate_random_letter() {
+    return 'a' + rand() % 26;
+}
+#include "words.h"
+#include <stdlib.h>
+#include <string.h>
+
+// Exemple de définition
+char** copy_word_list(char **word_list, int word_count) {
+    char **copy = malloc(word_count * sizeof(char*));
+    for (int i = 0; i < word_count; i++) {
+        copy[i] = strdup(word_list[i]);
+    }
+    return copy;
+}
+
+int words_remaining(char **words_to_find, int word_count) {
+    for (int i = 0; i < word_count; i++) {
+        if (words_to_find[i] != NULL) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void free_word_list(char **word_list, int word_count) {
+    for (int i = 0; i < word_count; i++) {
+        free(word_list[i]);
+    }
+    free(word_list);
+}
